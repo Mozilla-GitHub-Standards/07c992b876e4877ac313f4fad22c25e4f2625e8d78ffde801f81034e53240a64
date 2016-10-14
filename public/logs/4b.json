@@ -1,0 +1,74 @@
+{
+    "deviceId": "4b",
+    "incomingCall": [
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:30:57",
+            "duration": "1min 18sec",
+            "time": "05:30:57 PM CDT"
+        },
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:32:40",
+            "duration": "3min 16sec",
+            "time": "05:32:40 PM CDT"
+        },
+        {
+            "contact": "999-999-9999",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T13:50:33",
+            "duration": "0min 0sec",
+            "time": "01:50:33 PM CDT"
+        }
+    ],
+    "incomingSMS": [
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:36:18",
+            "duration": "NA",
+            "time": "05:36:18 PM CDT"
+        }
+    ],
+    "outgoingCall": [
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:29:52",
+            "duration": "0min 37sec",
+            "time": "05:29:52 PM CDT"
+        },
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:37:48",
+            "duration": "1min 45sec",
+            "time": "05:37:48 PM CDT"
+        }
+    ],
+    "outgoingSMS": [
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:29:36",
+            "duration": "NA",
+            "time": "05:29:36 PM CDT"
+        },
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:36:07",
+            "duration": "NA",
+            "time": "05:36:07 PM CDT"
+        },
+        {
+            "contact": "4a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:47:26",
+            "duration": "NA",
+            "time": "05:47:26 PM CDT"
+        }
+    ]
+}

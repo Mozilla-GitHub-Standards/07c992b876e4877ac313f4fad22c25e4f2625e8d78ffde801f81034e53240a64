@@ -1,0 +1,95 @@
+{
+    "deviceId": "8a",
+    "incomingCall": [
+        {
+            "contact": "8b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T22:19:30",
+            "duration": "0min 0sec",
+            "time": "10:19:30 PM CDT"
+        }
+    ],
+    "incomingSMS": [
+        {
+            "contact": "8b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T22:19:25",
+            "duration": "NA",
+            "time": "10:19:25 PM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T22:19:47",
+            "duration": "NA",
+            "time": "10:19:47 PM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T22:26:13",
+            "duration": "NA",
+            "time": "10:26:13 PM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T22:56:40",
+            "duration": "NA",
+            "time": "10:56:40 PM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T06:55:57",
+            "duration": "NA",
+            "time": "06:55:57 AM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T16:36:43",
+            "duration": "NA",
+            "time": "04:36:43 PM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T16:36:53",
+            "duration": "NA",
+            "time": "04:36:53 PM CDT"
+        }
+    ],
+    "outgoingCall": [
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T09:56:32",
+            "duration": "0min 44sec",
+            "time": "09:56:32 AM CDT"
+        }
+    ],
+    "outgoingSMS": [
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T09:56:16",
+            "duration": "NA",
+            "time": "09:56:16 AM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T09:57:13",
+            "duration": "NA",
+            "time": "09:57:13 AM CDT"
+        },
+        {
+            "contact": "8b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T09:57:16",
+            "duration": "NA",
+            "time": "09:57:16 AM CDT"
+        }
+    ]
+}

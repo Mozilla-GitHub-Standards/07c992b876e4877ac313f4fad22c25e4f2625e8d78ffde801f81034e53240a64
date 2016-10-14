@@ -1,0 +1,333 @@
+{
+    "deviceId": "9b",
+    "incomingCall": [
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:31:03",
+            "duration": "0min 0sec",
+            "time": "04:31:03 PM CDT"
+        }
+    ],
+    "incomingSMS": [
+        {
+            "contact": "9a",
+            "date": "10/10/2016",
+            "datetime": "2016-10-10T21:28:19",
+            "duration": "NA",
+            "time": "09:28:19 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T10:31:01",
+            "duration": "NA",
+            "time": "10:31:01 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:31:16",
+            "duration": "NA",
+            "time": "04:31:16 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:31:44",
+            "duration": "NA",
+            "time": "04:31:44 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:40:52",
+            "duration": "NA",
+            "time": "04:40:52 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T22:26:35",
+            "duration": "NA",
+            "time": "10:26:35 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:14:50",
+            "duration": "NA",
+            "time": "08:14:50 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:18:03",
+            "duration": "NA",
+            "time": "08:18:03 AM CDT"
+        }
+    ],
+    "outgoingCall": [
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:30:08",
+            "duration": "0min 23sec",
+            "time": "04:30:08 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:30:59",
+            "duration": "0min 17sec",
+            "time": "04:30:59 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:37:56",
+            "duration": "9min 0sec",
+            "time": "04:37:56 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:56:36",
+            "duration": "0min 35sec",
+            "time": "04:56:36 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:57:19",
+            "duration": "0min 39sec",
+            "time": "04:57:19 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:14:10",
+            "duration": "0min 40sec",
+            "time": "08:14:10 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:15:12",
+            "duration": "0min 39sec",
+            "time": "08:15:12 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:17:33",
+            "duration": "0min 39sec",
+            "time": "08:17:33 AM CDT"
+        }
+    ],
+    "outgoingSMS": [
+        {
+            "contact": "9a",
+            "date": "10/10/2016",
+            "datetime": "2016-10-10T19:59:07",
+            "duration": "NA",
+            "time": "07:59:07 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/10/2016",
+            "datetime": "2016-10-10T20:03:03",
+            "duration": "NA",
+            "time": "08:03:03 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/10/2016",
+            "datetime": "2016-10-10T22:21:59",
+            "duration": "NA",
+            "time": "10:21:59 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T08:55:46",
+            "duration": "NA",
+            "time": "08:55:46 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:30:39",
+            "duration": "NA",
+            "time": "04:30:39 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:31:26",
+            "duration": "NA",
+            "time": "04:31:26 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:31:29",
+            "duration": "NA",
+            "time": "04:31:29 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:31:35",
+            "duration": "NA",
+            "time": "04:31:35 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:40:51",
+            "duration": "NA",
+            "time": "04:40:51 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:41:30",
+            "duration": "NA",
+            "time": "04:41:30 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:41:39",
+            "duration": "NA",
+            "time": "04:41:39 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:57:06",
+            "duration": "NA",
+            "time": "04:57:06 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:22",
+            "duration": "NA",
+            "time": "04:58:22 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:25",
+            "duration": "NA",
+            "time": "04:58:25 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:28",
+            "duration": "NA",
+            "time": "04:58:28 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:31",
+            "duration": "NA",
+            "time": "04:58:31 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:34",
+            "duration": "NA",
+            "time": "04:58:34 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:38",
+            "duration": "NA",
+            "time": "04:58:38 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:41",
+            "duration": "NA",
+            "time": "04:58:41 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T16:58:44",
+            "duration": "NA",
+            "time": "04:58:44 PM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:14:27",
+            "duration": "NA",
+            "time": "08:14:27 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:15:14",
+            "duration": "NA",
+            "time": "08:15:14 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:15:33",
+            "duration": "NA",
+            "time": "08:15:33 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:17:08",
+            "duration": "NA",
+            "time": "08:17:08 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:17:16",
+            "duration": "NA",
+            "time": "08:17:16 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:17:18",
+            "duration": "NA",
+            "time": "08:17:18 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:17:36",
+            "duration": "NA",
+            "time": "08:17:36 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:32:20",
+            "duration": "NA",
+            "time": "08:32:20 AM CDT"
+        },
+        {
+            "contact": "9a",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T08:32:25",
+            "duration": "NA",
+            "time": "08:32:25 AM CDT"
+        }
+    ]
+}

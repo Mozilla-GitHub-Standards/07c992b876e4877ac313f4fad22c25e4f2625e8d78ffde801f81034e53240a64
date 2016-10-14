@@ -1,0 +1,256 @@
+{
+    "deviceId": "2a",
+    "incomingCall": [
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:20:00",
+            "duration": "0min 0sec",
+            "time": "04:20:00 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:47:52",
+            "duration": "0min 0sec",
+            "time": "05:47:52 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:50:20",
+            "duration": "0min 0sec",
+            "time": "05:50:20 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:56:25",
+            "duration": "2min 26sec",
+            "time": "05:56:25 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T20:06:38",
+            "duration": "0min 0sec",
+            "time": "08:06:38 PM CDT"
+        }
+    ],
+    "incomingSMS": [
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T15:50:39",
+            "duration": "NA",
+            "time": "03:50:39 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:03:40",
+            "duration": "NA",
+            "time": "04:03:40 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:16:14",
+            "duration": "NA",
+            "time": "05:16:14 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:33:10",
+            "duration": "NA",
+            "time": "05:33:10 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:46:54",
+            "duration": "NA",
+            "time": "05:46:54 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:47:06",
+            "duration": "NA",
+            "time": "05:47:06 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:50:32",
+            "duration": "NA",
+            "time": "05:50:32 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:58:39",
+            "duration": "NA",
+            "time": "05:58:39 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T21:55:47",
+            "duration": "NA",
+            "time": "09:55:47 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T23:52:04",
+            "duration": "NA",
+            "time": "11:52:04 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T23:52:12",
+            "duration": "NA",
+            "time": "11:52:12 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:31:41",
+            "duration": "NA",
+            "time": "05:31:41 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:31:49",
+            "duration": "NA",
+            "time": "05:31:49 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T17:31:52",
+            "duration": "NA",
+            "time": "05:31:52 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T18:58:20",
+            "duration": "NA",
+            "time": "06:58:20 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T23:02:30",
+            "duration": "NA",
+            "time": "11:02:30 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/13/2016",
+            "datetime": "2016-10-13T10:06:44",
+            "duration": "NA",
+            "time": "10:06:44 AM CDT"
+        }
+    ],
+    "outgoingCall": [
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:42:00",
+            "duration": "4min 55sec",
+            "time": "04:42:00 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:55:36",
+            "duration": "0min 18sec",
+            "time": "05:55:36 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:55:59",
+            "duration": "0min 11sec",
+            "time": "05:55:59 PM CDT"
+        }
+    ],
+    "outgoingSMS": [
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T14:30:58",
+            "duration": "NA",
+            "time": "02:30:58 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T14:31:07",
+            "duration": "NA",
+            "time": "02:31:07 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T15:59:42",
+            "duration": "NA",
+            "time": "03:59:42 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T16:06:35",
+            "duration": "NA",
+            "time": "04:06:35 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:55:30",
+            "duration": "NA",
+            "time": "05:55:30 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/11/2016",
+            "datetime": "2016-10-11T17:58:54",
+            "duration": "NA",
+            "time": "05:58:54 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T12:20:44",
+            "duration": "NA",
+            "time": "12:20:44 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T12:20:48",
+            "duration": "NA",
+            "time": "12:20:48 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T18:57:45",
+            "duration": "NA",
+            "time": "06:57:45 PM CDT"
+        },
+        {
+            "contact": "2b",
+            "date": "10/12/2016",
+            "datetime": "2016-10-12T18:57:48",
+            "duration": "NA",
+            "time": "06:57:48 PM CDT"
+        }
+    ]
+}
