@@ -23,6 +23,10 @@
     allSeries.forEach(function(series, i) {
       // draw the center line
       var rowOffset = i * 50;
+      if (series.uniqType.endsWith('B')) {
+        ctx.fillStyle = '#eee';
+        ctx.fillRect(opts.xOffset, rowOffset, opts.width-(opts.xOffset + 10), 50);
+      }
       ctx.fillStyle = '#aaa';
       ctx.fillRect(opts.xOffset, rowOffset+25, opts.width-(opts.xOffset + 10), 1);
     });
