@@ -15,10 +15,26 @@
     canvas {
       width: auto;
     }
+    #timeline {
+      width: 100%;
+      overflow-x: scroll;
+    }
+    #toolbar {
+      margin: 0.5rem 0 1rem 0;
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    #toolbar .btn {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 3px 6px;
+    }
   </style>
 </head>
 <body>
 
+<div id="toolbar">
+  <a id="toggleIncomingBtn" class="btn">Toggle Incoming</a>
+</div>
 <div id="timeline"></div>
 
 <table id="tabular">
@@ -78,6 +94,7 @@ function createSeries(allData) {
   Object.keys(uniqTypes).filter(function(type) {
     return type.endsWith('B');
   }).forEach(function(typeB) {
+    var typeDirection;
     var typeA = typeB.replace(/(incoming|outgoing)(.+)B$/, function(m, direction, type) {
       if (direction === 'incoming') {
         return 'outgoing' + type + 'A';
@@ -91,18 +108,55 @@ function createSeries(allData) {
     }
     aggregateData.types.push(typeB);
   });
+  if (config.hideIncoming) {
+    aggregateData.types = aggregateData.types.filter(function(type) {
+      return !type.startsWith('incoming');
+    });
+  }
+  if (config.hideOutgoing) {
+    aggregateData.types = aggregateData.types.filter(function(type) {
+      return !type.startsWith('outgoing');
+    });
+  }
   console.log('aggregateData.types: ', aggregateData.types);
   return aggregateData;
 }
 
-var participantId = util.getParamfromQueryString(location.search.substring(1), 'id');
+function getConfig() {
+  var key, value, config = {};
+  var querystr = location.search.substring(1);
+  for(var i=0; i<arguments.length; i++) {
+    key = arguments[i];
+    value = util.getParamfromQueryString(querystr, key);
+    if (value && value.match(/^\d+$/)) {
+      value = parseInt(value);
+    }
+    config[key] = value;
+  }
+  return config;
+}
+var config = getConfig('id', 'hideIncoming', 'hideOutgoing');
 var chartDataSeries;
 
-if (!participantId) {
+if (!config.id) {
   showMenu();
 } else {
-  var pairId = parseInt(participantId);
+  var pairId = config.pairId = parseInt(config.id);
   var deviceIds = [pairId+'a', pairId+'b'];
+
+  var toggleIncomingBtn = document.getElementById('toggleIncomingBtn');
+  toggleIncomingBtn.href = 'timeline.html?' + (function() {
+    var querystr = 'id=' + config.pairId;
+    if (config.hideIncoming) {
+      querystr += '&hideIncoming=0';
+      toggleIncomingBtn.textContent = 'Show Incoming'
+    } else {
+      querystr += '&hideIncoming=1';
+      toggleIncomingBtn.textContent = 'Hide Incoming'
+    }
+    return querystr;
+  })();
+
   Promise.all(deviceIds.map(function(id) {
     return window.fetch('./logs/' + id + '.json');
   })).then(function(results) {
@@ -151,6 +205,7 @@ if (!participantId) {
 }
 
 function showMenu() {
+  document.getElementById('toolbar').style.display = 'none';
   window.fetch('./logs/index.json').then(function(resp) {
     resp.json().then(function(filenames) {
       var container = document.getElementById('timeline');
