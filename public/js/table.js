@@ -23,7 +23,7 @@
     var entriesByDate = []
 
     allSeries.forEach(function(series, i) {
-      eventTypeCols[series.type] = i+1;
+      eventTypeCols[series.uniqType] = i+1;
       entriesByDate.push.apply(entriesByDate, series.data);
     });
 
@@ -45,7 +45,7 @@
     entriesByDate.forEach(function(seriesRow) {
       var rowData = [];
       var entry = seriesRow[2];
-      var colIndex = eventTypeCols[entry.type];
+      var colIndex = eventTypeCols[entry.uniqType];
       colHeaders.forEach(function(col, i) {
         var value = '';
         if (i === 0) {

@@ -9,6 +9,7 @@
       series.data = dataArray.map(function(entry, i) {
         var date = new Date(entry.datetime);
         entry.type = opts.type;
+        entry.uniqType = opts.uniqType;
         return [date, util.getSecondsFromDurationString(entry.duration), entry];
       });
 
