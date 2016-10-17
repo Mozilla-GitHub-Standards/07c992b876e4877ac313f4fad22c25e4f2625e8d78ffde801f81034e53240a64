@@ -2,12 +2,12 @@
  <html>
  <head>
    <meta charset="utf-8">
-   <title>Line Chart</title>
+   <title>Average Chart</title>
  </head>
  <body>
  
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <div id="timeline" style="height: 180px;"></div>
+ <div id="timeline" style="width: 900px; height: 500px;"></div>
  
  <script>
  function getIdfromQueryString(queryStr) {
@@ -36,7 +36,7 @@
  
      var p2 = document.createElement('p');
      p2.innerHTML = 'Usage: ' +
-     '<a href="linechart.html?id=1a">linechart.html?id=1a</a>'
+     '<a href="average.html?id=1a">average.html?id=1a</a>'
      ' where 1a.json is a file in the ./logs/ directory, produced by running a' +
      ' PDF report from AT&T through scraperJSON.py';
     container.appendChild(p2);
@@ -74,7 +74,7 @@
    var last_date = null;
    for (var i in incomingSMS) {
      if (last_date != incomingSMS[i][0].getDate()) {
-       var temp = [incomingSMS[i][0].getDate(), countInArray(incomingSMS, incomingSMS[i][0].getDate()), 0, 0, 0]
+       var temp = [incomingSMS[i][0].getDate(), countInArray(incomingSMS, incomingSMS[i][0].getDate()), 0, 0, 0, 0]
        totalSMS.push(temp);
        last_date = incomingSMS[i][0].getDate();
      }
@@ -120,6 +120,18 @@
        last_date = outgoingCalls[i][0].getDate();
      }
    }
+   var dailyAvg = []
+    for (var i in totalSMS) {
+      var temp = 0
+      for (var j = 1; j < totalSMS[i].length; j++) {
+        temp += totalSMS[i][j]
+        if (j === totalSMS[i].length - 1) {
+          temp = temp / 4
+          totalSMS[i][j] += temp
+        }
+    }
+  }
+  console.log('totalSMS', totalSMS)
    return totalSMS;
  }
  
@@ -129,7 +141,7 @@
  if (participantId) {
    window.fetch('./logs/' + participantId + '.json').then(function(resp) {
      resp.json().then(function(data) {
-       google.charts.load('current', {'packages':['corechart', 'line']});
+       google.charts.load('current', {'packages':['corechart']});
        chartDataSeries = createSeries(data);
        // google.charts.load('current', {'packages':['timeline']});
        google.charts.setOnLoadCallback(function() {
@@ -145,7 +157,7 @@
          var p = document.createElement('p');
          var a = document.createElement('a');
          a.textContent = id;
-         a.href = 'linechart.html?id='+id;
+         a.href = 'average.html?id='+id;
          p.appendChild(a);
          container.appendChild(p);
        });
@@ -154,34 +166,24 @@
      printUsage();
    });
    var selfLink
-   console.log('usage: linechart.html?id=1a');
+   console.log('usage: average.html?id=1a');
  }
  
  function drawChart(seriesData) {
    
-   console.log('drawChart, seriesData:', seriesData);
    var container = document.getElementById('timeline');
-   var data = new google.visualization.DataTable();
-   data.addColumn('number', 'Date/Time');
-   data.addColumn('number', 'incomingSMS')
-   data.addColumn('number', 'outgoingSMS')
-   data.addColumn('number', 'incomingCalls')
-   data.addColumn('number', 'outgoingCalls')
-   data.addRows(seriesData);
- 
+   seriesData.unshift(['Date', 'incomingSMS', 'outgoingSMS', 'incomingCalls', 'outgoingCalls', 'Average Communication'])
+   console.log(seriesData)
+   var data = new google.visualization.arrayToDataTable(seriesData);
+
    var options = {
-       hAxis: {
-         title: 'Time - Date', 
-         ticks: [
-           10, 11, 12, 13, 14, 15, 16, 17
-         ]
-       },
-       vAxis: {
-         title: '# of Events'
-       }
-     };
- 
-   var chart = new google.visualization.LineChart(container);
+    title : 'Frequency of Interactions per Day',
+    vAxis: {title: '# of SMS/Phone'},
+    hAxis: {title: 'Day'},
+    seriesType: 'bars',
+    series: {4: {type: 'line'}}
+  };
+   var chart = new google.visualization.ComboChart(container);
    chart.draw(data, options);
  }
  
