@@ -80,15 +80,24 @@
     ctx.arc(opts.x, opts.y, opts.size/2, 0, 2 * Math.PI, false);
     ctx.fillStyle = opts.fillStyle;
     ctx.fill();
-    // console.log('drawDot: ', opts);
   }
   TimelineChart.prototype.drawDot = drawDot;
+
+  function scaleDotSize(value, min, max) {
+    if (isNaN(value) || value < min) {
+      value = min
+    }
+    var clampedValue = Math.max(Math.min(value, max), min);
+    clampedValue = clampedValue - min*0.75;
+    var scaledValue = 4 * Math.pow(clampedValue, 1/3);
+    return scaledValue;
+  }
 
   function drawChart(container, allSeries) {
     var opts = this.options;
     var canvas = document.createElement('canvas');
     var numDays = Math.ceil((opts.endDate.getTime() - opts.startDate.getTime())/util.DAY_MS);
-    canvas.width = opts.width = numDays * 24 * opts.scale;
+    canvas.width = opts.width = numDays * 24 * opts.xScale;
     console.log('drawChart, numDays: '+ numDays, 'width: ' + canvas.width);
     canvas.height = opts.height;
     container.appendChild(canvas);
@@ -128,14 +137,13 @@
   function drawEntries(ctx, series, opts) {
     ctx.fillStyle = opts.seriesStyle.fillStyle;
     series.forEach((entry, i) => {
-      var x = util.getPositionForDate(entry[0], opts.startDate, opts.endDate, opts.width);
-      var rawSize = isNaN(entry[1]) ? 1 : opts.secondSize * entry[1];
-      var dotScale = 8;
-      var size = dotScale*Math.max(rawSize, 1);
+      var x = util.getPositionForDate(entry[0], opts.startDate, opts.endDate, opts.innerWidth);
+      var rawSize = isNaN(entry[1]) ? 1 : entry[1];
+      var size = scaleDotSize(rawSize, 15, 60*15);
       // console.log('drawDot at size: ', rawSize, size, size*dotScale, entry);
-      // console.log('drawDot at x: ', x+opts.xOffset, 'y: ' + (opts.rowOffset+25));
+      // console.log('drawDot for data: ', entry[0], opts.startDate, x+opts.xOffset, 'y: ' + (opts.rowOffset+25));
       drawDot(ctx, {
-        x: x,
+        x: opts.xOffset + x,
         y: opts.rowOffset+25,
         fillStyle: opts.seriesStyle.fillStyle,
         size: size

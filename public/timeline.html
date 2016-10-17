@@ -135,7 +135,7 @@ function getConfig() {
   }
   return config;
 }
-var config = getConfig('id', 'hideIncoming', 'hideOutgoing');
+var config = getConfig('id', 'hideIncoming', 'hideOutgoing', 'xScale');
 var chartDataSeries;
 
 if (!config.id) {
@@ -256,7 +256,7 @@ function chartEachSeries(chartData) {
     width: 2000,
     height: 50*(allSeries.length+1),
     xOffset: 10,
-    scale: 20,
+    xScale: config.xScale || 20,
     seriesStyles: chartData.types.map(function(type) {
       switch (type) {
         case 'incomingSMSA':
