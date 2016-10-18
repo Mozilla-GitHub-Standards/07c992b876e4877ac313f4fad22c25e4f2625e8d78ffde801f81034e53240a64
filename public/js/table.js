@@ -12,10 +12,16 @@
   }
   Table.prototype = {};
 
-  function drawTable(table, allSeries, opts) {
+  function drawTable(container, allSeries, opts) {
+    var headerTable = document.createElement('table');
+    var table = document.createElement('table');
+    container.appendChild(headerTable);
+    container.appendChild(table);
+
     opts = opts ? util.mixin(Object.create(this.options), opts) : this.options;
     var tfoot = document.createElement('tfoot');
     var thead = document.createElement('thead');
+    var headTr = thead.appendChild(document.createElement('tr'));
     var tbody = document.createElement('tbody');
     var dataRowsFragment = document.createDocumentFragment();
     var eventTypeCols = {};
@@ -33,7 +39,7 @@
     colHeaders.unshift('Date/Time');
     colHeaders.forEach(function(label) {
       var th = document.createElement('th');
-      thead.appendChild(th);
+      headTr.appendChild(th);
       th.textContent = label;
     });
 
@@ -62,7 +68,7 @@
       dataRowsFragment.appendChild(createTableRow(rowData));
     });
 
-    table.appendChild(thead);
+    headerTable.appendChild(thead);
     table.appendChild(tbody);
     tbody.appendChild(dataRowsFragment);
   };
