@@ -14,7 +14,7 @@
       if (width > labelWidth) {
         labelWidth = width;
       }
-      ctx.fillText(series.label, opts.xOffset, i*50+25+5);
+      ctx.fillText(series.label, opts.xOffset, i*opts.rowHeight+25+5);
     });
     opts.xOffset = opts.xOffset + labelWidth + opts.xOffset;
     opts.innerWidth = opts.width - opts.xOffset - 10;
@@ -22,10 +22,10 @@
 
     allSeries.forEach(function(series, i) {
       // draw the center line
-      var rowOffset = i * 50;
+      var rowOffset = i * opts.rowHeight;
       if (series.uniqType.endsWith('B')) {
         ctx.fillStyle = '#eee';
-        ctx.fillRect(opts.xOffset, rowOffset, opts.width-(opts.xOffset + 10), 50);
+        ctx.fillRect(opts.xOffset, rowOffset, opts.width-(opts.xOffset + 10), opts.rowHeight);
       }
       ctx.fillStyle = '#aaa';
       ctx.fillRect(opts.xOffset, rowOffset+25, opts.width-(opts.xOffset + 10), 1);
@@ -61,10 +61,10 @@
         tickX = util.getPositionForDate(hourDate, opts.startDate, opts.endDate, opts.innerWidth);
         if (i % 4 === 0) {
           ctx.fillStyle = '#999';
-          ctx.fillText(i, opts.xOffset+tickX-3, allSeries.length*50);
+          ctx.fillText(i, opts.xOffset+tickX-3, allSeries.length*opts.rowHeight);
         }
         ctx.fillStyle = i % 12 === 0 ? '#999' : '#ccc';
-        ctx.fillRect(opts.xOffset+tickX, 10, 1, allSeries.length*50-20);
+        ctx.fillRect(opts.xOffset+tickX, 10, 1, allSeries.length*opts.rowHeight-20);
       }
       ctx.font = origFont
       // date label
@@ -78,8 +78,12 @@
   function drawDot(ctx, opts) {
     ctx.beginPath();
     ctx.arc(opts.x, opts.y, opts.size/2, 0, 2 * Math.PI, false);
-    ctx.fillStyle = opts.fillStyle;
-    ctx.fill();
+    if (opts.outline) {
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = opts.fillStyle;
+      ctx.fill();
+    }
   }
   TimelineChart.prototype.drawDot = drawDot;
 
@@ -95,12 +99,14 @@
 
   function drawChart(container, allSeries) {
     var opts = this.options;
-    var canvas = document.createElement('canvas');
+    this.allSeries = allSeries;
+    var canvas = this.canvasNode = document.createElement('canvas');
     var numDays = Math.ceil((opts.endDate.getTime() - opts.startDate.getTime())/util.DAY_MS);
     canvas.width = opts.width = numDays * 24 * opts.xScale;
     console.log('drawChart, numDays: '+ numDays, 'width: ' + canvas.width);
     canvas.height = opts.height;
     container.appendChild(canvas);
+
     var ctx = this.ctx = canvas.getContext('2d');
 
     var secondSize = (function() {
@@ -120,15 +126,15 @@
 
     var xAxisOptions = util.mixin(Object.create(opts), {
       seriesStyle: opts.axisStyle,
-      rowOffset: allSeries.length*50
+      rowOffset: allSeries.length*opts.rowHeight
     });
     this.drawXAxisRow(ctx, allSeries, xAxisOptions);
 
     allSeries.forEach(function(series, i) {
       var rowOptions = Object.create(opts);
-      rowOptions.rowOffset = i*50;
+      rowOptions.rowOffset = i*opts.rowHeight;
       rowOptions.seriesStyle = rowOptions.seriesStyles[i];
-      console.log('drawEntries with rowOffset: ' + rowOptions.rowOffset, typeof rowOptions.rowOffset);
+      // console.log('drawEntries with rowOffset: ' + rowOptions.rowOffset, typeof rowOptions.rowOffset);
       this.drawEntries(ctx, series.data, rowOptions);
     }, this);
   }
@@ -136,17 +142,27 @@
 
   function drawEntries(ctx, series, opts) {
     ctx.fillStyle = opts.seriesStyle.fillStyle;
-    series.forEach((entry, i) => {
-      var x = util.getPositionForDate(entry[0], opts.startDate, opts.endDate, opts.innerWidth);
-      var rawSize = isNaN(entry[1]) ? 1 : entry[1];
+    this.chartOpts = opts;
+    series.forEach((row, i) => {
+      var entry = row[2];
+      var duration = row[1];
+      var x = util.getPositionForDate(row[0], opts.startDate, opts.endDate, opts.innerWidth);
+      var rawSize = isNaN(duration) ? 1 : duration;
       var size = scaleDotSize(rawSize, 15, 60*15);
-      // console.log('drawDot at size: ', rawSize, size, size*dotScale, entry);
-      // console.log('drawDot for data: ', entry[0], opts.startDate, x+opts.xOffset, 'y: ' + (opts.rowOffset+25));
+      var type = entry.type;
+      var isMissedCall;
+      if ((type === 'incomingCall' && duration === 0) ||
+          (type === 'outgoingCall' && duration <= 16)) {
+         isMissedCall = true;
+      }
+      // console.log('drawDot at size: ', rawSize, size, size*dotScale, row);
+      // console.log('drawDot for data: ', row[0], opts.startDate, x+opts.xOffset, 'y: ' + (opts.rowOffset+25));
       drawDot(ctx, {
         x: opts.xOffset + x,
         y: opts.rowOffset+25,
         fillStyle: opts.seriesStyle.fillStyle,
-        size: size
+        size: size,
+        outline: isMissedCall
       });
     });
   }

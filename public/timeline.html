@@ -4,6 +4,17 @@
   <meta charset="utf-8">
   <title>Haiku: Timeline</title>
   <style>
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
     table {
       border: 1px solid #ccc;
     }
@@ -15,11 +26,9 @@
     canvas {
       width: auto;
     }
-    #timeline {
-      width: 100%;
-      overflow-x: scroll;
-    }
+
     #toolbar {
+      flex: 0 1 0;
       margin: 0.5rem 0 1rem 0;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
@@ -27,6 +36,53 @@
       display: inline-block;
       margin: 0.5rem;
       padding: 3px 6px;
+    }
+    #timeline {
+      flex: 0 0 auto;
+      width: 100%;
+      overflow-x: scroll;
+    }
+    #tableView {
+      flex: 1 5 auto;
+      overflow-y: scroll;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
+    #tables {
+      flex: 1 1 auto;
+    }
+    #tables > table:first-child {
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+    }
+    #tables tr:not(.highlight) > td {
+      transition: background-color ease 2.4s;
+    }
+    #tables tr.highlight > td {
+      outline: 2px dotted #f90;
+      background-color: #ff9;
+      transition: background-color ease 0.4s;
+    }
+    #tables thead th:nth-child(1n),
+    #tables tbody td:nth-child(1n) {
+      width: 15rem;
+    }
+    #tables thead th+th,
+    #tables tbody th+th {
+      width: 13rem;
+    }
+    #topArrow {
+      position: sticky;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      flex: 0 1 20px;
+      margin: 5px;
+      outline: 1px dotted blue;
+      text-align: center;
+      background-color: rgba(255,255,255,0.85);
     }
   </style>
 </head>
@@ -37,8 +93,11 @@
 </div>
 <div id="timeline"></div>
 
-<table id="tabular">
-</table>
+<div id="tableView">
+  <div id="topArrow">&#8593;</div>
+  <div id="tables">
+  </div>
+</div>
 
 <script src="js/util.js"></script>
 <script src="js/data-series.js"></script>
@@ -186,18 +245,32 @@ if (!config.id) {
           container.appendChild(p1);
         });
       } else {
-        var chartData = createSeries(results);
+        var chartData = window.chartSeriesData = createSeries(results);
         console.log('chartData: ', chartData);
         var chart = chartEachSeries(chartData);
+        var tableOpts = {};
+        var tableView = Table.create(tableOpts);
+        tableView.draw(
+          document.getElementById('tables'),
+          chartData.types.map(function(type) {
+            return chartData[type];
+          })
+        );
         if (1) {
-          var tableOpts = {};
-          var tableView = Table.create(tableOpts);
-          tableView.draw(
-            document.getElementById('tabular'),
-            chartData.types.map(function(type) {
-              return chartData[type];
-            })
-          );
+          window.timelineChart = chart;
+          chart.canvasNode.addEventListener('click', function(evt) {
+            var canvasX = evt.clientX - chart.canvasNode.offsetLeft + chart.canvasNode.parentNode.scrollLeft;
+            var canvasY = evt.clientY - chart.canvasNode.offsetTop + chart.canvasNode.parentNode.scrollTop;
+            var entry = getEntryAtCoords(chart, chartData, canvasX, canvasY);
+            var tableRow = entry && findRowForEntry(entry, chartData);
+            if (tableRow) {
+              highlightTableRow(tableRow);
+            }
+          });
+
+          document.querySelector('#topArrow').addEventListener('click', function(evt) {
+            evt.target.parentNode.scrollTop = 0;
+          })
         }
       }
     });
@@ -237,6 +310,7 @@ function showMenu() {
   console.log('usage: html-timeline.html?id=1a');
 
 }
+
 function chartEachSeries(chartData) {
   console.log('chartEachSeries: chartData: ', chartData);
   var firstDate, lastDate;
@@ -257,6 +331,7 @@ function chartEachSeries(chartData) {
     height: 50*(allSeries.length+1),
     xOffset: 10,
     xScale: config.xScale || 20,
+    rowHeight: 50,
     seriesStyles: chartData.types.map(function(type) {
       switch (type) {
         case 'incomingSMSA':
@@ -285,6 +360,71 @@ function chartEachSeries(chartData) {
 
   var timelineChart = Timeline.create(chartOpts);
   timelineChart.draw(document.getElementById('timeline'), allSeries);
+  return timelineChart;
+}
+
+function getEntryAtCoords(chart, chartData, x, y) {
+  var rowHeight = chart.chartOpts.rowHeight;
+  var row = (y - y % rowHeight) / rowHeight;
+  var idx = 0;
+  var type = chartData.types[row];
+  if (!type) {
+    console.warn('no type matched at row: ' + row, x, y, chartData);
+    return;
+  }
+  var seriesData = chartData[type];
+  var startDate = chart.chartOpts.startDate;
+  var endDate = chart.chartOpts.endDate;
+  var chartX = x - chart.chartOpts.xOffset;
+  var chartY = row * chart.chartOpts.rowHeight;
+
+  var propn = chartX/chart.chartOpts.innerWidth;
+  var span = endDate.getTime() - startDate.getTime();
+  var dateish = new Date(startDate);
+  dateish.setTime(startDate.getTime() + span*propn);
+  var dateishX = util.getPositionForDate(
+    dateish,
+    chart.chartOpts.startDate,
+    chart.chartOpts.endDate,
+    chart.chartOpts.innerWidth
+  );
+
+  var delta = Infinity;
+  var nearestDate = endDate;
+  var nearestIndex = 0;
+  seriesData.data.forEach(function(row, idx) {
+    var curr = row[0];
+    var ms = Math.abs(curr.getTime() - dateish.getTime());
+    if (ms < delta) {
+      delta = ms;
+      nearestDate = curr;
+      nearestIndex = idx;
+      return curr;
+    }
+  });
+  var entry = seriesData.data[nearestIndex][2];
+  // console.log('getEntryAtCoords: nearestDate:', nearestDate.toISOString(), dateish.toISOString(), entry);
+  return entry;
+}
+
+function findRowForEntry(entry, chartData) {
+  var dateStr = (new Date(entry.datetime)).toLocaleString();
+  var tableRows = document.querySelector('#tables > table > tbody').rows;
+  var row = Array.prototype.find.call(tableRows, function(tr) {
+    return tr.firstChild.textContent.includes(dateStr);
+  });
+  console.log('findRowForEntry: ', entry, dateStr, row);
+  return row;
+}
+
+function highlightTableRow(tr) {
+  // console.log('highlightTableRow: ', tr);
+  tr.classList.add('highlight');
+  var container = document.querySelector('#tableView');
+  container.scrollTop = tr.offsetTop;
+  setTimeout(function() {
+    tr.classList.remove('highlight');
+  }, 2000);
 }
 
 </script>
