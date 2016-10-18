@@ -196,9 +196,13 @@ function getConfig() {
   }
   return config;
 }
-var config = getConfig('id', 'hideIncoming', 'hideOutgoing', 'xScale', 'missedCall');
+var config = getConfig('id', 'hideIncoming', 'hideOutgoing', 'xScale', 'missedCall', 'justTimeline');
 var chartDataSeries;
 
+if (config.justTimeline) {
+  document.querySelector('#toolbar').style.display = 'none';
+  document.querySelector('#tableView').style.display = 'none';
+}
 if (!config.id) {
   showMenu();
 } else {
