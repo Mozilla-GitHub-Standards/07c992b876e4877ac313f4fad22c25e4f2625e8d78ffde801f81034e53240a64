@@ -152,7 +152,7 @@
       var type = entry.type;
       var isMissedCall;
       if ((type === 'incomingCall' && duration === 0) ||
-          (type === 'outgoingCall' && duration <= 16)) {
+          (type === 'outgoingCall' && duration <= opts.missedCallThreshold)) {
          isMissedCall = true;
       }
       // console.log('drawDot at size: ', rawSize, size, size*dotScale, row);
