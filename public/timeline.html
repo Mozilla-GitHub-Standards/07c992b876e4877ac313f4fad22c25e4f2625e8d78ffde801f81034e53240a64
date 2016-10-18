@@ -196,7 +196,7 @@ function getConfig() {
   }
   return config;
 }
-var config = getConfig('id', 'hideIncoming', 'hideOutgoing', 'xScale');
+var config = getConfig('id', 'hideIncoming', 'hideOutgoing', 'xScale', 'missedCall');
 var chartDataSeries;
 
 if (!config.id) {
@@ -333,6 +333,7 @@ function chartEachSeries(chartData) {
     height: 50*(allSeries.length+1),
     xOffset: 10,
     xScale: config.xScale || 20,
+    missedCallThreshold: config.missedCall || 45,
     rowHeight: 50,
     seriesStyles: chartData.types.map(function(type) {
       switch (type) {
