@@ -48,12 +48,15 @@
       return a[0] - b[0];
     });
 
+    var footerData = ['Totals'];
+
     entriesByDate.forEach(function(seriesRow) {
       var rowData = [];
       var entry = seriesRow[2];
       var colIndex = eventTypeCols[entry.uniqType];
       colHeaders.forEach(function(col, i) {
         var value = '';
+
         if (i === 0) {
           value = seriesRow[0].toLocaleString();
         } else if (i === colIndex) {
@@ -62,15 +65,30 @@
           } else {
             value = '\u2022';
           }
+          var total = footerData[i] || (footerData[i] = 0);
+          footerData[i] = ++total;
         }
         rowData.push(value);
       });
       dataRowsFragment.appendChild(createTableRow(rowData));
     });
-
     headerTable.appendChild(thead);
     table.appendChild(tbody);
     tbody.appendChild(dataRowsFragment);
+    var footer = table.appendChild(document.createElement('tfoot'));
+    var totalsRow = createTableRow(footerData);
+    totalsRow.classList.add('totals');
+    footer.appendChild(totalsRow);
+    if (entriesByDate.length > 10) {
+      // add a column header row to the footer
+      var footerLabelsRow = document.createElement('tr');
+      colHeaders.forEach(function(label) {
+        var th = document.createElement('th');
+        footerLabelsRow.appendChild(th);
+        th.textContent = label;
+      });
+      footer.appendChild(footerLabelsRow);
+    }
   };
   EventSeriesTable.prototype.draw = drawTable;
 

@@ -53,10 +53,11 @@
     #tables {
       flex: 1 1 auto;
     }
-    #tables > table:first-child {
-      position: sticky;
-      top: 0;
-      background-color: #fff;
+    #tables > table:first-child,
+    #tables > table > tfoot > tr:last-child > th {
+      background-color: #eee;
+      color: #000;
+      font-weight: bold;
     }
     #tables tr:not(.highlight) > td {
       transition: background-color ease 2.4s;
@@ -73,6 +74,9 @@
     #tables thead th+th,
     #tables tbody th+th {
       width: 12rem;
+    }
+    #tables tfoot .totals td {
+      font-style: italic;
     }
     #topArrow {
       position: sticky;
