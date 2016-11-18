@@ -128,10 +128,12 @@ function createSeries(allData) {
   };
   var uniqTypes = {};
   var labels = {
-    'incomingSMS': 'Incoming SMS',
-    'outgoingSMS': 'Outgoing SMS',
-    'incomingCall': 'Incoming Calls',
-    'outgoingCall': 'Outgoing Calls'
+    // 'incomingSMS': 'Incoming SMS',
+    // 'outgoingSMS': 'Outgoing SMS',
+    // 'incomingCall': 'Incoming Calls',
+    // 'outgoingCall': 'Outgoing Calls',
+    'incomingMMS': 'Incoming MMS',
+    'outgoingMMS': 'Outgoing MMS'
   };
   allData.forEach(function(dataset, i) {
     var suffix = ['A', 'B', '!'][i];
@@ -236,7 +238,10 @@ if (!config.id) {
         // no data in response, sub in empty dataset
         var emptyDataset = {
           requestError: resp.status,
-          deviceId: id, incomingCall: [], incomingSMS: [], outgoingCall: [], outgoingSMS: []
+          deviceId: id,
+          incomingMMS: [], outgoingMMS: [],
+          // incomingCall: [], outgoingCall: [],
+          // incomingSMS: [], outgoingSMS: []
         };
         jsonPromises.push(Promise.resolve(emptyDataset));
       }
@@ -336,17 +341,23 @@ function chartEachSeries(chartData) {
     width: 2000,
     height: 50*(allSeries.length+1),
     xOffset: 10,
-    xScale: config.xScale || 20,
+    xScale: config.xScale || 24,
     missedCallThreshold: config.missedCall || 45,
     rowHeight: 50,
     seriesStyles: chartData.types.map(function(type) {
       switch (type) {
+        case 'incomingMMSA':
+        case 'incomingMMSB':
+          return {fillStyle: 'green'};
+        case 'outgoingMMSA':
+        case 'outgoingMMSB':
+          return {fillStyle: 'blue'};
         case 'incomingSMSA':
         case 'incomingSMSB':
-          return {fillStyle: 'green'};
+          return {fillStyle: '#999'};
         case 'outgoingSMSA':
         case 'outgoingSMSB':
-          return {fillStyle: 'blue'};
+          return {fillStyle: '#666'};
         case 'incomingCallA':
         case 'incomingCallB':
           return {fillStyle: 'orange'};
